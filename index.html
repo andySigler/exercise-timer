@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            body, p, h1, h2, select {
+                font-family: Helvetica;
+            }
+            h1 {
+                font-size: 220px;
+                width:100%;
+                text-align: center;
+                margin-top:0px;
+            }
+            h2 {
+                font-size: 40px;
+                width:100%;
+                text-align: center;
+            }
+            .container {
+                width: 100%;
+                max-width: 600px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <p>
+                <select id="exerciseSelect">
+                    <option value="fullBody">Full Body</option>
+                    <option value="backFocus">Back Focus</option>
+                </select>
+                <span id="description"></span>
+                <button onclick="start()">Start</button>
+                <button onclick="pause()">Pause</button>
+                <button onclick="stop()">Stop</button>
+            </p>
+            <h2 id="exerciseName"></h2>
+            <h1 id="exerciseSeconds"></h1>
+        </div>
+    </body>
+    <script type="text/javascript">
+        var warmUp = [
+            {
+                name: 'Arm Raises',
+                seconds: 30
+            },
+            {
+                name: 'Foam Roller',
+                seconds: 30
+            },
+            {
+                name: 'Lax Ball',
+                seconds: 30
+            },
+            {
+                name: 'Stand Rotate Shoulders',
+                seconds: 30
+            },
+            {
+                name: 'Wall Arm Raises',
+                seconds: 30
+            },
+            {
+                name: 'Corner Stretch',
+                seconds: 30
+            },
+            {
+                name: 'Wall Lats Stretch',
+                seconds: 30
+            },
+            {
+                name: 'T-Spine Left',
+                seconds: 150
+            },
+            {
+                name: 'T-Spine Right',
+                seconds: 150
+            },
+            {
+                name: 'Cat Camel',
+                seconds: 150
+            },
+            {
+                name: 'Bird Dog',
+                seconds: 150
+            }
+        ]
+        var exercises = {
+            fullBody: [
+                {
+                    name: 'Wall Sit',
+                    seconds: 30
+                },
+                {
+                    name: 'Elbow Rotate Right',
+                    seconds: 30
+                },
+                {
+                    name: 'Elbow Rotate Left',
+                    seconds: 30
+                },
+                {
+                    name: 'Push Ups',
+                    seconds: 30
+                },
+                {
+                    name: 'Stomach Back Arcs',
+                    seconds: 30
+                },
+                {
+                    name: 'Crunches',
+                    seconds: 30
+                },
+                {
+                    name: 'Chair Step Up',
+                    seconds: 30
+                },
+                {
+                    name: 'Squats',
+                    seconds: 30
+                },
+                {
+                    name: 'Tricep Dips',
+                    seconds: 30
+                },
+                {
+                    name: 'Walking Superman',
+                    seconds: 30
+                },
+                {
+                    name: 'Plank',
+                    seconds: 30
+                },
+                {
+                    name: 'Stomach "W" Arms',
+                    seconds: 30
+                },
+                {
+                    name: 'High Stepping',
+                    seconds: 30
+                },
+                {
+                    name: 'Lunges',
+                    seconds: 30
+                },
+                {
+                    name: 'Push-Ups & Rotation',
+                    seconds: 30
+                },
+                {
+                    name: 'Birdy Arm Raises',
+                    seconds: 30
+                },
+                {
+                    name: 'Side Plank Right',
+                    seconds: 30
+                },
+                {
+                    name: 'Side Plank Left',
+                    seconds: 30
+                }
+            ],
+            backFocus: [
+                {
+                    name: 'Elbow Rotation Right',
+                    seconds: 30
+                },
+                {
+                    name: 'Elbow Rotation Left',
+                    seconds: 30
+                },
+                {
+                    name: 'Rope Pulls',
+                    seconds: 30
+                },
+                {
+                    name: 'Band Pull Down',
+                    seconds: 30
+                },
+                {
+                    name: 'Band Twist Pull Right',
+                    seconds: 30
+                },
+                {
+                    name: 'Band Twist Pull Left',
+                    seconds: 30
+                },
+                {
+                    name: 'Band Bird Dog Right',
+                    seconds: 30
+                },
+                {
+                    name: 'Band Bird Dog Left',
+                    seconds: 30
+                },
+                {
+                    name: 'Band Pull Up Right',
+                    seconds: 30
+                },
+                {
+                    name: 'Band Pull Up Left',
+                    seconds: 30
+                },
+                {
+                    name: '"I" Medicine Ball',
+                    seconds: 30
+                },
+                {
+                    name: '"T" Medicine Ball',
+                    seconds: 30
+                },
+                {
+                    name: '"Y" Medicine Ball',
+                    seconds: 30
+                },
+                {
+                    name: 'Walking Superman',
+                    seconds: 30
+                }
+            ]
+        };
+        var restTime = 15;
+        var fullExer = [];
+        var interval = undefined;
+        var currentSecond = 0;
+        var currentStep = 0;
+        function preloadExercise() {
+            var menu = document.getElementById('exerciseSelect');
+            var exer = exercises[menu.value];
+            fullExer = warmUp.concat(exer);
+            var description = document.getElementById('description');
+            description.innerHTML = String(fullExer.length) + ' Steps';
+            var totMinutes = fullExer.reduce((tot, val) => {
+                return tot + (val.seconds / 60);
+            }, 0);
+            totMinutes += (restTime * fullExer.length) / 60;
+            description.innerHTML += ' (' + String(Math.round(totMinutes)) + ' Minutes)'
+        }
+        function displayNameTime() {
+            var exName = fullExer[currentStep].name;
+            exName += '<br>' + String(currentStep + 1) + ' / ' + String(fullExer.length);
+            document.getElementById('exerciseName').innerHTML = exName;
+            var secondsDisplay = Math.floor(currentSecond);
+            if (secondsDisplay >= 0) {
+                secondsDisplay = fullExer[currentStep].seconds - secondsDisplay;
+            }
+            secondsDisplay = String(Math.abs(secondsDisplay));
+            document.getElementById('exerciseSeconds').innerHTML = secondsDisplay;
+        }
+        function setColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+        function clearNameTime() {
+            document.getElementById('exerciseName').innerHTML = '';
+            document.getElementById('exerciseSeconds').innerHTML = '';
+        }
+        function workoutStep() {
+            currentSecond += 1;
+            if (currentSecond < 0) {
+                displayNameTime();
+                setColor('white');
+            }
+            else if (currentSecond < fullExer[currentStep].seconds){
+                displayNameTime();
+                setColor('rgb(0, 255, 123)');
+            }
+            else {
+                currentStep += 1;
+                currentSecond = restTime * -1;
+                if (currentStep >= fullExer.length) {
+                    console.log('done');
+                    stop();
+                }
+            }
+        }
+        function pause() {
+            if (interval) {
+                clearInterval(interval);
+                interval = undefined;
+                setColor('white');
+            }
+        }
+        function start() {
+            if (!interval) {
+                interval = setInterval(workoutStep, 1000);
+                workoutStep();
+            }
+        }
+        function stop() {
+            pause();
+            clearNameTime();
+            currentStep = 0;
+            currentSecond = restTime * -1;
+        }
+        window.addEventListener('load', (event) => {
+            document.getElementById('exerciseSelect').addEventListener('change', (e) => {
+                preloadExercise();
+            });
+            preloadExercise();
+            stop();
+        });
+    </script>
+</html>
