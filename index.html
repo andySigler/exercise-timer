@@ -6,19 +6,18 @@
                 font-family: Helvetica;
             }
             h1 {
-                font-size: 220px;
+                font-size: 300px;
                 width:100%;
-                text-align: center;
                 margin-top:0px;
             }
             h2 {
                 font-size: 40px;
                 width:100%;
-                text-align: center;
             }
             .container {
                 width: 100%;
                 max-width: 600px;
+                margin-top:80px;
                 margin-right: auto;
                 margin-left: auto;
             }
@@ -26,16 +25,16 @@
     </head>
     <body>
         <div class="container">
-            <p>
-                <select id="exerciseSelect">
-                    <option value="fullBody">Full Body</option>
-                    <option value="backFocus">Back Focus</option>
-                </select>
-                <span id="description"></span>
-                <button onclick="start()">Start</button>
-                <button onclick="pause()">Pause</button>
-                <button onclick="stop()">Stop</button>
-            </p>
+            <select id="exerciseSelect">
+                <option value="fullBody">Full Body</option>
+                <option value="backFocus">Back Focus</option>
+            </select>
+            <span id="description"></span>
+            <br>
+            <input type="checkbox" id="randomCheckbox"> Randomize
+            <button onclick="start()">Start</button>
+            <button onclick="pause()">Pause</button>
+            <button onclick="stop()">Stop</button>
             <h2 id="exerciseName"></h2>
             <h1 id="exerciseSeconds"></h1>
         </div>
@@ -282,9 +281,21 @@
         var interval = undefined;
         var currentSecond = 0;
         var currentStep = 0;
+        var shuffle = function (array) {
+            var currentIndex = array.length;
+            var temporaryValue, randomIndex;
+            while (0 !== currentIndex) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+            return array;
+        };
         function preloadExercise() {
             var menu = document.getElementById('exerciseSelect');
-            var exer = exercises[menu.value];
+            var exer = exercises[menu.value].slice();
             fullExer = warmUp.concat(exer);
             var description = document.getElementById('description');
             description.innerHTML = String(fullExer.length) + ' Steps';
@@ -339,6 +350,10 @@
             }
         }
         function start() {
+            if (document.getElementById('randomCheckbox').checked) {
+                fullExer = shuffle(fullExer.slice(warmUp.length))
+                fullExer = shuffle(warmUp.slice()).concat(fullExer);
+            }
             if (!interval) {
                 interval = setInterval(workoutStep, 1000);
                 workoutStep();
