@@ -42,16 +42,16 @@
     <script type="text/javascript">
         var warmUp = [
             {
-                name: 'Arm Raises',
+                name: 'Move Shoulders Around',
                 seconds: 30
             },
             {
                 name: 'Foam Roller',
-                seconds: 30
+                seconds: 60
             },
             {
                 name: 'Lax Ball',
-                seconds: 30
+                seconds: 60
             },
             {
                 name: 'Stand Rotate Shoulders',
@@ -59,7 +59,7 @@
             },
             {
                 name: 'Wall Arm Raises',
-                seconds: 30
+                seconds: 60
             },
             {
                 name: 'Corner Stretch',
@@ -71,19 +71,19 @@
             },
             {
                 name: 'T-Spine Left',
-                seconds: 150
+                seconds: 180
             },
             {
                 name: 'T-Spine Right',
-                seconds: 150
+                seconds: 180
             },
             {
                 name: 'Cat Camel',
-                seconds: 150
+                seconds: 180
             },
             {
                 name: 'Bird Dog',
-                seconds: 150
+                seconds: 180
             }
         ]
         var exercises = {
@@ -94,11 +94,11 @@
                 },
                 {
                     name: 'Elbow Rotate Right',
-                    seconds: 30
+                    seconds: 90
                 },
                 {
                     name: 'Elbow Rotate Left',
-                    seconds: 30
+                    seconds: 90
                 },
                 {
                     name: 'Push Ups',
@@ -106,7 +106,7 @@
                 },
                 {
                     name: 'Stomach Back Arcs',
-                    seconds: 30
+                    seconds: 45
                 },
                 {
                     name: 'Crunches',
@@ -114,7 +114,7 @@
                 },
                 {
                     name: 'Chair Step Up',
-                    seconds: 30
+                    seconds: 45
                 },
                 {
                     name: 'Squats',
@@ -130,7 +130,7 @@
                 },
                 {
                     name: 'Plank',
-                    seconds: 30
+                    seconds: 60
                 },
                 {
                     name: 'Stomach "W" Arms',
@@ -276,7 +276,7 @@
                 }
             ]
         };
-        var restTime = 15;
+        var restTime = 20;
         var fullExer = [];
         var interval = undefined;
         var currentSecond = 0;
@@ -325,6 +325,14 @@
         }
         function workoutStep() {
             currentSecond += 1;
+            if (currentSecond >= fullExer[currentStep].seconds) {
+                currentSecond = restTime * -1;
+                currentStep += 1;
+                if (currentStep >= fullExer.length) {
+                    console.log('done');
+                    stop();
+                }
+            }
             if (currentSecond < 0) {
                 displayNameTime();
                 setColor('white');
@@ -332,14 +340,6 @@
             else if (currentSecond < fullExer[currentStep].seconds){
                 displayNameTime();
                 setColor('rgb(0, 255, 123)');
-            }
-            else {
-                currentStep += 1;
-                currentSecond = restTime * -1;
-                if (currentStep >= fullExer.length) {
-                    console.log('done');
-                    stop();
-                }
             }
         }
         function pause() {
@@ -351,8 +351,9 @@
         }
         function start() {
             if (document.getElementById('randomCheckbox').checked) {
-                fullExer = shuffle(fullExer.slice(warmUp.length))
-                fullExer = shuffle(warmUp.slice()).concat(fullExer);
+                fullExer = shuffle(fullExer.slice(warmUp.length));
+                // do not shuffle warm up
+                fullExer = warmUp.slice().concat(fullExer);
             }
             if (!interval) {
                 interval = setInterval(workoutStep, 1000);
