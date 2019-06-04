@@ -35,6 +35,7 @@
             <button onclick="start()">Start</button>
             <button onclick="pause()">Pause</button>
             <button onclick="stop()">Stop</button>
+            <button onclick="skip()">Skip</button>
             <h2 id="exerciseName"></h2>
             <h1 id="exerciseSeconds"></h1>
         </div>
@@ -365,6 +366,14 @@
             clearNameTime();
             currentStep = 0;
             currentSecond = restTime * -1;
+        }
+        function skip() {
+            var oldStep = Math.floor(currentStep);
+            var maxLen = Math.floor(fullExer.length);
+            stop();
+            currentStep = (oldStep + 1) % maxLen;
+            start();
+
         }
         window.addEventListener('load', (event) => {
             document.getElementById('exerciseSelect').addEventListener('change', (e) => {
