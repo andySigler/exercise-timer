@@ -46,24 +46,16 @@
     <script type="text/javascript">
         var warmUp = [
             {
-                name: 'Deep Breathing',
-                seconds: 90
-            },
-            {
-                name: 'Move Shoulders Around',
-                seconds: 30
-            },
-            {
                 name: 'Lax Ball',
                 seconds: 60
             },
             {
-                name: 'Stand Rotate Shoulders',
-                seconds: 30
+                name: 'Move Shoulders Around',
+                seconds: 60
             },
             {
-                name: 'Wall Arm Raises',
-                seconds: 60
+                name: 'Bar Hang',
+                seconds: 30
             },
             {
                 name: 'Corner Stretch',
@@ -78,6 +70,10 @@
                 seconds: 30
             },
             {
+                name: 'Bar Hang',
+                seconds: 30
+            },
+            {
                 name: 'T-Spine Left',
                 seconds: 3 * 60
             },
@@ -86,26 +82,30 @@
                 seconds: 3 * 60
             },
             {
+                name: 'Bar Hang',
+                seconds: 30
+            },
+            {
                 name: 'Cat Camel',
                 seconds: 3 * 60
             },
             {
                 name: 'Bird Dog',
                 seconds: 3 * 60
+            },
+            {
+                name: 'Bar Hang',
+                seconds: 30
+            },
+            {
+                name: 'Reverse Lunge',
+                seconds: 1 * 60
             }
         ];
         var coolDown = [
             {
-                name: 'Hamstring Right',
-                seconds: 30
-            },
-            {
-                name: 'Hamstring Left',
-                seconds: 30
-            },
-            {
                 name: 'Ball Foot Raises',
-                seconds: 60 * 5
+                seconds: 60 * 3
             },
             {
                 name: 'Hamstring Right',
@@ -115,6 +115,14 @@
                 name: 'Hamstring Left',
                 seconds: 30
             },
+            {
+                name: 'Hamstring Right',
+                seconds: 30
+            },
+            {
+                name: 'Hamstring Left',
+                seconds: 30
+            }
         ];
         var exercises = {
             simple: {
@@ -127,12 +135,8 @@
                 coolDown: true,
                 steps: [
                     {
-                        name: 'Deep Breathing',
-                        seconds: 90
-                    },
-                    {
                         name: 'Stand Bird Dog',
-                        seconds: 90
+                        seconds: 3 * 60
                     },
                     {
                         name: 'Straight Leg Raises',
@@ -147,6 +151,22 @@
                         seconds: 30
                     },
                     {
+                        name: 'Hold Bird-Dog Right',
+                        seconds: 45
+                    },
+                    {
+                        name: 'Hold Bird-Dog Left',
+                        seconds: 45
+                    },
+                    {
+                        name: 'Reverse Plank',
+                        seconds: 45
+                    },
+                    {
+                        name: 'Asian Squat w/ Ball',
+                        seconds: 60
+                    },
+                    {
                         name: 'Neck Forward Back',
                         seconds: 30
                     },
@@ -155,28 +175,40 @@
                         seconds: 30
                     },
                     {
-                        name: 'T-Spine Left',
-                        seconds: 3 * 60
+                        name: 'Foam Roller Arcs',
+                        seconds: 60
                     },
                     {
-                        name: 'T-Spine Right',
-                        seconds: 3 * 60
+                        name: 'Thread Needle Right 1',
+                        seconds: 60
                     },
                     {
-                        name: 'Hold Bird-Dog Right',
+                        name: 'Thread Needle Left 1',
+                        seconds: 60
+                    },
+                    {
+                        name: 'Thread Needle Right 2',
+                        seconds: 60
+                    },
+                    {
+                        name: 'Thread Needle Left 2',
+                        seconds: 60
+                    },
+                    {
+                        name: 'Stand Hamstring Right',
                         seconds: 30
                     },
                     {
-                        name: 'Hold Bird-Dog Left',
+                        name: 'Stand Hamstring Left',
                         seconds: 30
                     },
                     {
-                        name: 'Downward Dog',
+                        name: 'Sunrise',
+                        seconds: 30
+                    },
+                    {
+                        name: 'McKensie Push Ups',
                         seconds: 45
-                    },
-                    {
-                        name: 'Upward Dog',
-                        seconds: 30
                     },
                     {
                         name: 'Lying Chest Right',
@@ -187,24 +219,12 @@
                         seconds: 45
                     },
                     {
-                        name: 'Childs Pose',
-                        seconds: 45
-                    },
-                    {
-                        name: 'Thread Needle Right',
-                        seconds: 45
-                    },
-                    {
-                        name: 'Thread Needle Left',
+                        name: 'Groin Stretch',
                         seconds: 45
                     },
                     {
                         name: 'Butchers Block',
-                        seconds: 45
-                    },
-                    {
-                        name: 'McKensie Push Ups',
-                        seconds: 45
+                        seconds: 60
                     },
                     {
                         name: 'Lunge Hip-Flex Right',
@@ -237,14 +257,6 @@
                     {
                         name: '90:90 Foot Left',
                         seconds: 45
-                    },
-                    {
-                        name: 'Reverse Plank',
-                        seconds: 30
-                    },
-                    {
-                        name: 'Full Squat',
-                        seconds: 30
                     },
                     {
                         name: 'Calf Right',
@@ -315,11 +327,19 @@
                 coolDown: true,
                 steps: [
                     {
-                        name: 'Elbow Rotation Right',
+                        name: 'Elbow Rotation Right 1',
                         seconds: 60
                     },
                     {
-                        name: 'Elbow Rotation Left',
+                        name: 'Elbow Rotation Left 1',
+                        seconds: 60
+                    },
+                    {
+                        name: 'Elbow Rotation Right 2',
+                        seconds: 60
+                    },
+                    {
+                        name: 'Elbow Rotation Left 2',
                         seconds: 60
                     },
                     {
@@ -328,7 +348,7 @@
                     },
                     {
                         name: 'Band Pull Down',
-                        seconds: 60
+                        seconds: 2 * 60
                     },
                     {
                         name: 'Band Twist Pull Right',
@@ -347,15 +367,27 @@
                         seconds: 60
                     },
                     {
-                        name: '"I" Medicine Ball',
+                        name: '"I" Medicine Ball 1',
                         seconds: 60
                     },
                     {
-                        name: '"T" Medicine Ball',
+                        name: '"T" Medicine Ball 1',
                         seconds: 45
                     },
                     {
-                        name: '"Y" Medicine Ball',
+                        name: '"Y" Medicine Ball 1',
+                        seconds: 30
+                    },
+                    {
+                        name: '"I" Medicine Ball 2',
+                        seconds: 60
+                    },
+                    {
+                        name: '"T" Medicine Ball 2',
+                        seconds: 45
+                    },
+                    {
+                        name: '"Y" Medicine Ball 2',
                         seconds: 30
                     },
                     {
@@ -374,6 +406,10 @@
                 steps: [
                     {
                         name: 'Dead Bug',
+                        seconds: 2 * 60
+                    },
+                    {
+                        name: 'Squats',
                         seconds: 60
                     },
                     {
@@ -381,19 +417,15 @@
                         seconds: 60
                     },
                     {
-                        name: 'Squats',
+                        name: 'Side Plank Right',
+                        seconds: 60
+                    },
+                    {
+                        name: 'Side Plank Left',
                         seconds: 60
                     },
                     {
                         name: 'Lying Leg Raises',
-                        seconds: 45
-                    },
-                    {
-                        name: 'Side Plank Right',
-                        seconds: 45
-                    },
-                    {
-                        name: 'Side Plank Left',
                         seconds: 45
                     },
                     {
@@ -421,8 +453,12 @@
                         seconds: 45
                     },
                     {
-                        name: 'Ball Crunches',
-                        seconds: 45
+                        name: 'Ball Crunches 1',
+                        seconds: 30
+                    },
+                    {
+                        name: 'Ball Crunches 2',
+                        seconds: 30
                     }
                 ]
             }
