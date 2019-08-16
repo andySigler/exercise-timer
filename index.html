@@ -83,7 +83,8 @@
             },
             {
                 name: 'Bar Hang',
-                seconds: 60
+                seconds: 60,
+                extraWait: 10
             },
             {
                 name: 'Cat Camel',
@@ -95,7 +96,8 @@
             },
             {
                 name: 'Bar Hang',
-                seconds: 60
+                seconds: 60,
+                extraWait: 10
             },
             {
                 name: 'Reverse Lunge',
@@ -109,7 +111,8 @@
             },
             {
                 name: 'Hamstring Right',
-                seconds: 30
+                seconds: 30,
+                extraWait: 10
             },
             {
                 name: 'Hamstring Left',
@@ -135,10 +138,6 @@
                 coolDown: true,
                 steps: [
                     {
-                        name: 'Bar Hang',
-                        seconds: 60
-                    },
-                    {
                         name: 'Stand Bird Dog',
                         seconds: 3 * 60
                     },
@@ -153,10 +152,6 @@
                     {
                         name: 'Raised Knee Hip Left',
                         seconds: 30
-                    },
-                    {
-                        name: 'Bar Hang',
-                        seconds: 60
                     },
                     {
                         name: 'Hold Bird-Dog Right',
@@ -183,16 +178,14 @@
                         seconds: 30
                     },
                     {
-                        name: 'Bar Hang',
-                        seconds: 60
-                    },
-                    {
                         name: 'Foam Roller Arcs',
-                        seconds: 60
+                        seconds: 60,
+                        extraWait: 10
                     },
                     {
                         name: 'Thread Needle Right 1',
-                        seconds: 60
+                        seconds: 60,
+                        extraWait: 10
                     },
                     {
                         name: 'Thread Needle Left 1',
@@ -208,14 +201,11 @@
                     },
                     {
                         name: 'Stand Hamstring Right',
-                        seconds: 30
+                        seconds: 60,
+                        extraWait: 10
                     },
                     {
                         name: 'Stand Hamstring Left',
-                        seconds: 30
-                    },
-                    {
-                        name: 'Bar Hang',
                         seconds: 60
                     },
                     {
@@ -260,7 +250,8 @@
                     },
                     {
                         name: '90:90 Knee Right',
-                        seconds: 45
+                        seconds: 45,
+                        extraWait: 10
                     },
                     {
                         name: '90:90 Foot Right',
@@ -268,7 +259,8 @@
                     },
                     {
                         name: '90:90 Knee Left',
-                        seconds: 45
+                        seconds: 45,
+                        extraWait: 10
                     },
                     {
                         name: '90:90 Foot Left',
@@ -281,6 +273,14 @@
                     {
                         name: 'Calf Left',
                         seconds: 30
+                    },
+                    {
+                        name: 'Quad Right',
+                        seconds: 30
+                    },
+                    {
+                        name: 'Quad Left',
+                        seconds: 30
                     }
                 ]
             },
@@ -290,7 +290,7 @@
                 steps: [
                     {
                         name: 'Wall Sit',
-                        seconds: 45
+                        seconds: 60
                     },
                     {
                         name: 'Elbow Rotate Right',
@@ -306,7 +306,7 @@
                     },
                     {
                         name: 'Bicycle Crunches',
-                        seconds: 30
+                        seconds: 60
                     },
                     {
                         name: 'Squats',
@@ -321,20 +321,20 @@
                         seconds: 60
                     },
                     {
-                        name: 'Stomach "W" Arms',
-                        seconds: 45
+                        name: 'Lying "W" Arms',
+                        seconds: 60
                     },
                     {
                         name: 'Lunges',
-                        seconds: 45
+                        seconds: 60
                     },
                     {
                         name: 'Push-Ups & Rotation',
                         seconds: 45
                     },
                     {
-                        name: 'Birdy Arm Raises',
-                        seconds: 45
+                        name: 'Lying Arm Raises',
+                        seconds: 60
                     }
                 ]
             },
@@ -343,72 +343,79 @@
                 coolDown: true,
                 steps: [
                     {
-                        name: 'Elbow Rotation Right 1',
+                        name: 'Elbow Right 1',
+                        seconds: 60,
+                        extraWait: 10
+                    },
+                    {
+                        name: 'Elbow Left 1',
                         seconds: 60
                     },
                     {
-                        name: 'Elbow Rotation Left 1',
+                        name: 'Elbow Right 2',
                         seconds: 60
                     },
                     {
-                        name: 'Elbow Rotation Right 2',
-                        seconds: 60
-                    },
-                    {
-                        name: 'Elbow Rotation Left 2',
+                        name: 'Elbow Left 2',
                         seconds: 60
                     },
                     {
                         name: 'Rope Pulls',
+                        seconds: 60,
+                        extraWait: 20
+                    },
+                    {
+                        name: 'Band Pull-Down',
+                        seconds: 2 * 60,
+                        extraWait: 20
+                    },
+                    {
+                        name: 'Twist Right',
+                        seconds: 60,
+                        extraWait: 20
+                    },
+                    {
+                        name: 'Twist Left',
                         seconds: 60
                     },
                     {
-                        name: 'Band Pull Down',
-                        seconds: 2 * 60
+                        name: 'Band Pull-Up Right',
+                        seconds: 60,
+                        extraWait: 20
                     },
                     {
-                        name: 'Band Twist Pull Right',
-                        seconds: 60
-                    },
-                    {
-                        name: 'Band Twist Pull Left',
-                        seconds: 60
-                    },
-                    {
-                        name: 'Band Pull Up Right',
-                        seconds: 60
-                    },
-                    {
-                        name: 'Band Pull Up Left',
+                        name: 'Band Pull-Up Left',
                         seconds: 60
                     },
                     {
                         name: '"I" Medicine Ball 1',
-                        seconds: 60
+                        seconds: 45,
+                        extraWait: 20
                     },
                     {
                         name: '"T" Medicine Ball 1',
-                        seconds: 60
+                        seconds: 45
                     },
                     {
                         name: '"Y" Medicine Ball 1',
-                        seconds: 60
+                        seconds: 45
                     },
                     {
                         name: '"I" Medicine Ball 2',
-                        seconds: 60
+                        seconds: 45
                     },
                     {
                         name: '"T" Medicine Ball 2',
-                        seconds: 60
+                        seconds: 45
                     },
                     {
                         name: '"Y" Medicine Ball 2',
-                        seconds: 60
+                        seconds: 45
                     },
                     {
                         name: 'Walking Superman 1',
-                        seconds: 30
+                        seconds: 30,
+                        extraWait: 20
                     },
                     {
                         name: 'Walking Superman 2',
@@ -470,7 +477,8 @@
                     },
                     {
                         name: 'Ball Crunches 1',
-                        seconds: 30
+                        seconds: 30,
+                        extraWait: 10
                     },
                     {
                         name: 'Ball Crunches 2',
@@ -521,13 +529,15 @@
                 fullExer = fullExer.concat(coolDown.slice());
             }
             var description = document.getElementById('description');
-            // description.innerHTML = String(fullExer.length) + ' Steps';
             totMinutes = fullExer.reduce((tot, val) => {
-                return tot + (val.seconds / 60);
+                tot += (val.seconds / 60);
+                if (val.extraWait) {
+                    tot += (val.extraWait / 60)
+                }
+                return tot
             }, 0);
             totMinutes += (restTime * fullExer.length) / 60;
             totalSecondCounter = Math.round(totMinutes * 60);
-            // description.innerHTML += ' (' + String(Math.round(totMinutes)) + ' Minutes)';
             displayNameTime();
         }
         function getTimeRemainingString() {
@@ -562,11 +572,15 @@
             totalSecondCounter -= 1;
             currentSecond += 1;
             if (currentSecond >= fullExer[currentStep].seconds) {
-                currentSecond = restTime * -1;
                 currentStep += 1;
                 if (currentStep >= fullExer.length) {
                     stop();
                     return;
+                }
+                currentSecond = restTime * -1;
+                console.log(fullExer[currentStep])
+                if (fullExer[currentStep].extraWait) {
+                    currentSecond -= fullExer[currentStep].extraWait
                 }
             }
             if (currentSecond < 0) {
