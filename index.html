@@ -532,17 +532,23 @@
             if (exercises[menu.value].coolDown) {
                 fullExer = fullExer.concat(coolDown.slice());
             }
-            var description = document.getElementById('description');
-            totMinutes = fullExer.reduce((tot, val) => {
-                tot += (val.seconds / 60);
-                if (val.extraWait) {
-                    tot += (val.extraWait / 60)
+            calculateTimeRemaining();
+            displayNameTime();
+        }
+        function calculateTimeRemaining() {
+            var totalSteps = 0;
+            totMinutes = fullExer.reduce((tot, val, i) => {
+                if (currentStep <= i) {
+                    totalSteps += 1;
+                    tot += (val.seconds / 60);
+                    if (val.extraWait) {
+                        tot += (val.extraWait / 60)
+                    }
                 }
                 return tot
             }, 0);
-            totMinutes += (restTime * fullExer.length) / 60;
+            totMinutes += (restTime * totalSteps) / 60;
             totalSecondCounter = Math.round(totMinutes * 60);
-            displayNameTime();
         }
         function getTimeRemainingString() {
             var min = Math.floor(totalSecondCounter / 60);
@@ -640,6 +646,7 @@
             if (fullExer[currentStep].extraWait) {
                 currentSecond -= fullExer[currentStep].extraWait
             }
+            calculateTimeRemaining();
             start();
 
         }
