@@ -50,7 +50,7 @@
                 seconds: 60
             },
             {
-                name: 'Move Shoulders Around',
+                name: 'Wall Shoulders',
                 seconds: 60
             },
             {
@@ -59,11 +59,11 @@
             },
             {
                 name: 'Corner Stretch',
-                seconds: 30
+                seconds: 45
             },
             {
                 name: 'Wall Lats Stretch',
-                seconds: 30
+                seconds: 45
             },
             {
                 name: 'Chin Tucks',
@@ -75,7 +75,8 @@
             },
             {
                 name: 'T-Spine Left',
-                seconds: 3 * 60
+                seconds: 3 * 60,
+                extraWait: 10
             },
             {
                 name: 'T-Spine Right',
@@ -88,7 +89,8 @@
             },
             {
                 name: 'Cat Camel',
-                seconds: 3 * 60
+                seconds: 3 * 60,
+                extraWait: 10
             },
             {
                 name: 'Bird Dog',
@@ -101,18 +103,19 @@
             },
             {
                 name: 'Reverse Lunge',
-                seconds: 1 * 60
+                seconds: 2 * 60
             }
         ];
         var coolDown = [
             {
                 name: 'Ball Foot Raises',
-                seconds: 60 * 3
+                seconds: 60 * 3,
+                extraWait: 20
             },
             {
                 name: 'Hamstring Right',
                 seconds: 30,
-                extraWait: 10
+                extraWait: 20
             },
             {
                 name: 'Hamstring Left',
@@ -362,7 +365,7 @@
                     {
                         name: 'Rope Pulls',
                         seconds: 60,
-                        extraWait: 20
+                        extraWait: 30
                     },
                     {
                         name: 'Band Pull-Down',
@@ -390,7 +393,7 @@
                     {
                         name: '"I" Medicine Ball 1',
                         seconds: 45,
-                        extraWait: 20
+                        extraWait: 30
                     },
                     {
                         name: '"T" Medicine Ball 1',
@@ -432,11 +435,11 @@
                         seconds: 2 * 60
                     },
                     {
-                        name: 'Squats',
+                        name: 'Plank',
                         seconds: 60
                     },
                     {
-                        name: 'Plank',
+                        name: 'Squats',
                         seconds: 60
                     },
                     {
@@ -473,12 +476,13 @@
                     },
                     {
                         name: 'Hanging Leg Raise',
-                        seconds: 45
+                        seconds: 45,
+                        extraWait: 20
                     },
                     {
                         name: 'Ball Crunches 1',
                         seconds: 30,
-                        extraWait: 10
+                        extraWait: 20
                     },
                     {
                         name: 'Ball Crunches 2',
@@ -578,7 +582,6 @@
                     return;
                 }
                 currentSecond = restTime * -1;
-                console.log(fullExer[currentStep])
                 if (fullExer[currentStep].extraWait) {
                     currentSecond -= fullExer[currentStep].extraWait
                 }
@@ -634,6 +637,9 @@
             var maxLen = Math.floor(fullExer.length);
             stop();
             currentStep = (oldStep + 1) % maxLen;
+            if (fullExer[currentStep].extraWait) {
+                currentSecond -= fullExer[currentStep].extraWait
+            }
             start();
 
         }
