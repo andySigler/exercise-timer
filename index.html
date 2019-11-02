@@ -114,8 +114,8 @@
                 seconds: 2 * 60
             },
             {
-                name: 'Pull Ups',
-                seconds: 30
+                name: 'Rope Pulls',
+                seconds: 60
             }
         ];
         var coolDown = [
@@ -309,6 +309,15 @@
                 coolDown: true,
                 steps: [
                     {
+                        name: 'Pull Ups 1',
+                        seconds: 30,
+                        extraWait: 10
+                    },
+                    {
+                        name: 'Pull Ups 2',
+                        seconds: 30
+                    },
+                    {
                         name: 'Wall Sit',
                         seconds: 60
                     },
@@ -380,9 +389,13 @@
                         seconds: 60
                     },
                     {
-                        name: 'Rope Pulls',
-                        seconds: 60,
-                        extraWait: 30
+                        name: 'Pull Ups 1',
+                        seconds: 30,
+                        extraWait: 10
+                    },
+                    {
+                        name: 'Pull Ups 2',
+                        seconds: 30
                     },
                     {
                         name: 'Band Pull-Down',
