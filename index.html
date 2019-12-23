@@ -26,11 +26,13 @@
     <body>
         <div class="container">
             <select id="exerciseSelect">
-                <option value="backFocus">(Su/Th) Back Focus</option>
-                <option value="stretch">(M/F) Stretch</option>
+                <option value="backFocus1">(Su) Back Focus 1</option>
+                <option value="stretch">(M) Stretch</option>
                 <option value="fullBody">(Tu) Full Body</option>
-                <option value="coreFocus">(W/Sa) Core Focus</option>
-                <option value="simple">Simple</option>
+                <option value="coreFocus1">(W) Core Focus 1</option>
+                <option value="backFocus2">(Th) Back Focus 2</option>
+                <option value="stretch">(F) Stretch</option>
+                <option value="coreFocus2">(Sa) Core Focus 2</option>
             </select>
             <span id="description"></span>
             <br>
@@ -44,75 +46,145 @@
         </div>
     </body>
     <script type="text/javascript">
-        var warmUp = [
-            {
-                name: 'Bar Hang',
-                seconds: 60
-            },
-            {
-                name: 'Wall Shoulders',
-                seconds: 60
-            },
-            {
-                name: 'Chest Corner',
-                seconds: 45
-            },
-            {
-                name: 'Wall Lats Stretch',
-                seconds: 45
-            },
-            {
-                name: 'Chin Tucks',
-                seconds: 30
-            },
-            {
-                name: 'Bar Hang',
-                seconds: 60
-            },
-            {
-                name: 'T-Spine Left',
-                seconds: 120,
-                extraWait: 10
-            },
-            {
-                name: 'T-Spine Right',
-                seconds: 120
-            },
-            {
-                name: 'Bar Hang',
-                seconds: 60,
-                extraWait: 10
-            },
-            {
-                name: 'Cat Camel',
-                seconds: 2 * 60,
-                extraWait: 30
-            },
-            {
-                name: 'Hold Bird Dog Right',
-                seconds: 60
-            },
-            {
-                name: 'Hold Bird Dog Left',
-                seconds: 60
-            },
-            {
-                name: 'Bar Hang',
-                seconds: 60,
-                extraWait: 10
-            },
-            {
-                name: 'Reverse Lunge',
-                seconds: 2 * 60
-            },
-            {
-                name: 'Rope Pulls',
-                seconds: 60
-            },
-            {
-                name: 'Bar Hang',
-                seconds: 60
-            }
+        var warmUps = [
+            [
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                },
+                {
+                    name: 'Wall Shoulders',
+                    seconds: 60
+                },
+                {
+                    name: 'Chest Corner',
+                    seconds: 45
+                },
+                {
+                    name: 'Wall Lats Stretch',
+                    seconds: 45
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                },
+                {
+                    name: 'Cat Camel',
+                    seconds: 2 * 60,
+                    extraWait: 30
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Hold Bird Dog Right',
+                    seconds: 60
+                },
+                {
+                    name: 'Hold Bird Dog Left',
+                    seconds: 60
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Rope Pulls',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60,
+                    extraWait: 10
+                }
+            ],
+            [
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                },
+                {
+                    name: 'Wall Shoulders',
+                    seconds: 60
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                },
+                {
+                    name: 'Chin Tucks',
+                    seconds: 60
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Reverse Lunge',
+                    seconds: 2 * 60
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Rope Pulls',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                }
+            ],
+            [
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                },
+                {
+                    name: 'Wall Lats Stretch',
+                    seconds: 45
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                },
+                {
+                    name: 'T-Spine Left',
+                    seconds: 3 * 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'T-Spine Right',
+                    seconds: 3 * 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Reverse Lunge',
+                    seconds: 2 * 60
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                }
+            ]
         ];
         var coolDown = [
             {
@@ -123,34 +195,32 @@
             {
                 name: 'Hamstring Right',
                 seconds: 30,
-                extraWait: 20
+                extraWait: 30
             },
             {
                 name: 'Hamstring Left',
-                seconds: 30
+                seconds: 30,
+                extraWait: -10
             },
             {
                 name: 'Hamstring Right',
-                seconds: 30
+                seconds: 30,
+                extraWait: -10
             },
             {
                 name: 'Hamstring Left',
-                seconds: 30
+                seconds: 30,
+                extraWait: -10
             }
         ];
         var exercises = {
-            simple: {
-                warmUp: true,
-                coolDown: true,
-                steps: []
-            },
             stretch: {
-                warmUp: false,
+                warmUp: undefined,
                 coolDown: true,
                 steps: [
                     {
                         name: 'Stand Bird Dog',
-                        seconds: 3 * 60
+                        seconds: 2 * 60
                     },
                     {
                         name: 'Straight Leg Raises',
@@ -173,14 +243,6 @@
                         seconds: 60
                     },
                     {
-                        name: 'Neck Forward Back',
-                        seconds: 30
-                    },
-                    {
-                        name: 'Neck Side Side',
-                        seconds: 30
-                    },
-                    {
                         name: 'Foam Roller Arcs',
                         seconds: 60,
                         extraWait: 10
@@ -193,24 +255,6 @@
                     {
                         name: 'Thread-Needle Left',
                         seconds: 90
-                    },
-                    {
-                        name: 'Stand Hamstring Right 1',
-                        seconds: 30,
-                        extraWait: 10
-                    },
-                    {
-                        name: 'Stand Hamstring Right 2',
-                        seconds: 30
-                    },
-                    {
-                        name: 'Stand Hamstring Left 1',
-                        seconds: 30,
-                        extraWait: 10
-                    },
-                    {
-                        name: 'Stand Hamstring Left 2',
-                        seconds: 30
                     },
                     {
                         name: 'Lunge Hip-Flex Right',
@@ -285,7 +329,7 @@
                 ]
             },
             fullBody: {
-                warmUp: true,
+                warmUp: 0,
                 coolDown: true,
                 steps: [
                     {
@@ -295,14 +339,6 @@
                     },
                     {
                         name: 'Wall Sit',
-                        seconds: 60
-                    },
-                    {
-                        name: 'Elbow Rotate Right',
-                        seconds: 60
-                    },
-                    {
-                        name: 'Elbow Rotate Left',
                         seconds: 60
                     },
                     {
@@ -316,10 +352,6 @@
                     {
                         name: 'Squats',
                         seconds: 60
-                    },
-                    {
-                        name: 'Tricep Dips',
-                        seconds: 45
                     },
                     {
                         name: 'Plank',
@@ -343,28 +375,14 @@
                     }
                 ]
             },
-            backFocus: {
-                warmUp: true,
+            backFocus1: {
+                warmUp: 2,
                 coolDown: true,
                 steps: [
-                    {
-                        name: 'Elbow Right',
-                        seconds: 90,
-                        extraWait: 10
-                    },
-                    {
-                        name: 'Elbow Left',
-                        seconds: 90
-                    },
                     {
                         name: 'Pull Ups',
                         seconds: 30,
                         extraWait: 10
-                    },
-                    {
-                        name: 'Band Pull-Down',
-                        seconds: 2 * 60,
-                        extraWait: 20
                     },
                     {
                         name: 'Stand-Twist Right',
@@ -373,15 +391,6 @@
                     },
                     {
                         name: 'Stand-Twist Left',
-                        seconds: 60
-                    },
-                    {
-                        name: 'Band Pull-Up Right',
-                        seconds: 60,
-                        extraWait: 20
-                    },
-                    {
-                        name: 'Band Pull-Up Left',
                         seconds: 60
                     },
                     {
@@ -408,8 +417,46 @@
                     }
                 ]
             },
-            coreFocus: {
-                warmUp: true,
+            backFocus2: {
+                warmUp: 2,
+                coolDown: true,
+                steps: [
+                    {
+                        name: 'Elbow Right',
+                        seconds: 90,
+                        extraWait: 10
+                    },
+                    {
+                        name: 'Elbow Left',
+                        seconds: 90
+                    },
+                    {
+                        name: 'Band Pull-Down',
+                        seconds: 2 * 60,
+                        extraWait: 20
+                    },
+                    {
+                        name: 'Band Pull-Up Right',
+                        seconds: 60,
+                        extraWait: 20
+                    },
+                    {
+                        name: 'Band Pull-Up Left',
+                        seconds: 60
+                    },
+                    {
+                        name: 'Walking Superman 1',
+                        seconds: 30,
+                        extraWait: 20
+                    },
+                    {
+                        name: 'Walking Superman 2',
+                        seconds: 30
+                    }
+                ]
+            },
+            coreFocus1: {
+                warmUp: 1,
                 coolDown: true,
                 steps: [
                     {
@@ -435,6 +482,16 @@
                     {
                         name: 'Lying Leg Raises',
                         seconds: 45
+                    }
+                ]
+            },
+            coreFocus2: {
+                warmUp: 1,
+                coolDown: true,
+                steps: [
+                    {
+                        name: 'Dead Bug',
+                        seconds: 2 * 60
                     },
                     {
                         name: 'Hip Bridge',
@@ -462,7 +519,7 @@
                         extraWait: 20
                     },
                     {
-                        name: 'Ball Crunches 1',
+                        name: 'Ball Crunches',
                         seconds: 45,
                         extraWait: 20
                     }
@@ -470,13 +527,13 @@
             }
         };
         var schedule = [
-            'backFocus',    // Sunday
+            'backFocus1',    // Sunday
             'stretch',      // Monday
             'fullBody',     // Tuesday
-            'coreFocus',    // Wednesday
-            'backFocus',    // Thursday
+            'coreFocus1',    // Wednesday
+            'backFocus2',    // Thursday
             'stretch',      // Friday
-            'coreFocus',    // Saturday
+            'coreFocus2',    // Saturday
         ];
         var restTime = 20;
         var fullExer = [];
@@ -504,8 +561,9 @@
             }
             fullExer = exercises[menu.value].steps.slice();
             var intro = [];
-            if (exercises[menu.value].warmUp) {
-                fullExer = warmUp.slice().concat(fullExer);
+            var warmUpIndex = exercises[menu.value].warmUp;
+            if (warmUpIndex !== undefined) {
+                fullExer = warmUps[warmUpIndex].slice().concat(fullExer);
             }
             if (exercises[menu.value].coolDown) {
                 fullExer = fullExer.concat(coolDown.slice());
@@ -589,18 +647,17 @@
         function start() {
             if (document.getElementById('randomCheckbox').checked) {
                 var selection = document.getElementById('exerciseSelect');
-                if (exercises[selection.value].warmUp) {
-                    fullExer = fullExer.slice(warmUp.length);
+                var warmUpIndex = exercises[selection.value].warmUp;
+                if (warmUpIndex !== undefined) {
+                    fullExer = fullExer.slice(warmUps[warmUpIndex].length);
                 }
                 if (exercises[selection.value].coolDown) {
                     fullExer = fullExer.slice(
                         0, fullExer.length - coolDown.length);
                 }
                 fullExer = shuffle(fullExer);                  // shuffle
-                if (exercises[selection.value].warmUp) {
-                    fullExer = warmUp.slice().concat(fullExer);  // add warmup
-                }
-                if (exercises[selection.value].warmUp) {
+                if (warmUpIndex) {
+                    fullExer = warmUps[warmUpIndex].slice().concat(fullExer);  // add warmup
                     fullExer = fullExer.concat(coolDown);  // add cooldown
                 }
             }
