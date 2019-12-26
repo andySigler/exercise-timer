@@ -37,9 +37,7 @@
             <span id="description"></span>
             <br>
             <input type="checkbox" id="randomCheckbox"> Randomize
-            <button onclick="start()">Start</button>
-            <button onclick="pause()">Pause</button>
-            <button onclick="stop()">Stop</button>
+            <button onclick="onResumePauseButtonPress()" id="resumePauseButton">Start</button>
             <button onclick="skip()">Skip</button>
             <h2 id="exerciseName"></h2>
             <h1 id="exerciseSeconds"></h1>
@@ -637,6 +635,17 @@
                 setColor('rgb(0, 255, 123)');
             }
         }
+        function onResumePauseButtonPress() {
+            var btn = document.getElementById('resumePauseButton');
+            if (btn.innerHTML === 'Start' || btn.innerHTML === 'Resume') {
+                btn.innerHTML = 'Pause';
+                start();
+            }
+            else if (btn.innerHTML === 'Pause') {
+                btn.innerHTML = 'Resume';
+                pause();
+            }
+        }
         function pause() {
             if (interval !== undefined) {
                 clearInterval(interval);
@@ -682,7 +691,7 @@
                 currentSecond -= fullExer[currentStep].extraWait
             }
             calculateTimeRemaining();
-            start();
+            displayNameTime();
 
         }
         window.addEventListener('load', (event) => {
@@ -692,5 +701,16 @@
             stop();
             preloadExercise(true);
         });
+        document.addEventListener('keydown', (event) => {
+            console.log(event.keyCode);
+            if(event.keyCode === 32) { // space
+                onResumePauseButtonPress();
+                event.preventDefault();
+            }
+            else if(event.keyCode === 39) { // arrow right
+                skip();
+                event.preventDefault();
+            }
+        }, false);
     </script>
 </html>
