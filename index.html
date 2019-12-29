@@ -47,6 +47,26 @@
         var warmUps = [
             [
                 {
+                    name: 'Arms Up/Down',
+                    seconds: 30,
+                    extraWait: -15
+                },
+                {
+                    name: 'Shoulder Rotate Backward',
+                    seconds: 30,
+                    extraWait: -15
+                },
+                {
+                    name: 'Shoulder Rotate Forward',
+                    seconds: 30,
+                    extraWait: -15
+                },
+                {
+                    name: 'Arm Rows',
+                    seconds: 60,
+                    extraWait: -15
+                },
+                {
                     name: 'Bar Hang',
                     seconds: 60
                 },
@@ -102,6 +122,26 @@
             ],
             [
                 {
+                    name: 'Arms Up/Down',
+                    seconds: 30,
+                    extraWait: -15
+                },
+                {
+                    name: 'Shoulder Rotate Backward',
+                    seconds: 30,
+                    extraWait: -15
+                },
+                {
+                    name: 'Shoulder Rotate Forward',
+                    seconds: 30,
+                    extraWait: -15
+                },
+                {
+                    name: 'Arm Rows',
+                    seconds: 60,
+                    extraWait: -15
+                },
+                {
                     name: 'Bar Hang',
                     seconds: 60
                 },
@@ -142,6 +182,26 @@
                 }
             ],
             [
+                {
+                    name: 'Arms Up/Down',
+                    seconds: 30,
+                    extraWait: -15
+                },
+                {
+                    name: 'Shoulder Rotate Backward',
+                    seconds: 30,
+                    extraWait: -15
+                },
+                {
+                    name: 'Shoulder Rotate Forward',
+                    seconds: 30,
+                    extraWait: -15
+                },
+                {
+                    name: 'Arm Rows',
+                    seconds: 60,
+                    extraWait: -15
+                },
                 {
                     name: 'Bar Hang',
                     seconds: 60
@@ -612,19 +672,22 @@
             document.getElementById('exerciseName').innerHTML = 'Off';
             document.getElementById('exerciseSeconds').innerHTML = '...';
         }
+        function beginNextStep() {
+            currentStep += 1;
+            if (currentStep >= fullExer.length) {
+                stop();
+                return;
+            }
+            currentSecond = restTime * -1;
+            if (fullExer[currentStep].extraWait) {
+                currentSecond -= fullExer[currentStep].extraWait
+            }
+        }
         function workoutStep() {
             totalSecondCounter -= 1;
             currentSecond += 1;
             if (currentSecond >= fullExer[currentStep].seconds) {
-                currentStep += 1;
-                if (currentStep >= fullExer.length) {
-                    stop();
-                    return;
-                }
-                currentSecond = restTime * -1;
-                if (fullExer[currentStep].extraWait) {
-                    currentSecond -= fullExer[currentStep].extraWait
-                }
+                beginNextStep();
             }
             if (currentSecond < 0) {
                 displayNameTime();
@@ -683,16 +746,9 @@
             setColor('grey');
         }
         function skip() {
-            var oldStep = Math.floor(currentStep);
-            var maxLen = Math.floor(fullExer.length);
-            stop();
-            currentStep = (oldStep + 1) % maxLen;
-            if (fullExer[currentStep].extraWait) {
-                currentSecond -= fullExer[currentStep].extraWait
-            }
+            beginNextStep();
             calculateTimeRemaining();
             displayNameTime();
-
         }
         window.addEventListener('load', (event) => {
             document.getElementById('exerciseSelect').addEventListener('change', (e) => {
