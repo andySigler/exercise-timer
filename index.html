@@ -26,6 +26,7 @@
     <body>
         <div class="container">
             <select id="exerciseSelect">
+                <option value="simple">Simple</option>
                 <option value="backFocus1">(Su) Back Focus 1</option>
                 <option value="stretch">(M) Stretch</option>
                 <option value="fullBody">(Tu) Full Body</option>
@@ -45,6 +46,72 @@
     </body>
     <script type="text/javascript">
         var warmUps = [
+            [
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                },
+                {
+                    name: 'Wall Shoulders',
+                    seconds: 60
+                },
+                {
+                    name: 'Chest Corner',
+                    seconds: 45
+                },
+                {
+                    name: 'Wall Lats Stretch',
+                    seconds: 45
+                },
+                {
+                    name: 'Chin Tucks',
+                    seconds: 30
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60
+                },
+                {
+                    name: 'T-Spine Left',
+                    seconds: 90,
+                    extraWait: 10
+                },
+                {
+                    name: 'T-Spine Right',
+                    seconds: 90
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Cat Camel',
+                    seconds: 2 * 60,
+                    extraWait: 30
+                },
+                {
+                    name: 'Hold Bird Dog Right',
+                    seconds: 60
+                },
+                {
+                    name: 'Hold Bird Dog Left',
+                    seconds: 60
+                },
+                {
+                    name: 'Bar Hang',
+                    seconds: 60,
+                    extraWait: 10
+                },
+                {
+                    name: 'Reverse Lunge',
+                    seconds: 2 * 60
+                },
+                {
+                    name: 'Rope Pulls',
+                    seconds: 60
+                }
+            ],
             [
                 {
                     name: 'Arms Up/Down',
@@ -272,6 +339,11 @@
             }
         ];
         var exercises = {
+            simple: {
+                warmUp: 0,
+                coolDown: true,
+                steps: []
+            },
             stretch: {
                 warmUp: undefined,
                 coolDown: true,
@@ -387,7 +459,7 @@
                 ]
             },
             fullBody: {
-                warmUp: 0,
+                warmUp: 1,
                 coolDown: true,
                 steps: [
                     {
@@ -434,7 +506,7 @@
                 ]
             },
             backFocus1: {
-                warmUp: 2,
+                warmUp: 3,
                 coolDown: true,
                 steps: [
                     {
@@ -476,7 +548,7 @@
                 ]
             },
             backFocus2: {
-                warmUp: 2,
+                warmUp: 3,
                 coolDown: true,
                 steps: [
                     {
@@ -514,7 +586,7 @@
                 ]
             },
             coreFocus1: {
-                warmUp: 1,
+                warmUp: 2,
                 coolDown: true,
                 steps: [
                     {
@@ -544,7 +616,7 @@
                 ]
             },
             coreFocus2: {
-                warmUp: 1,
+                warmUp: 2,
                 coolDown: true,
                 steps: [
                     {
