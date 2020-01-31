@@ -39,8 +39,6 @@
             <br>
             <input type="checkbox" id="randomCheckbox"> Randomize
             <input type="checkbox" id="homeCheckbox" checked> Home
-            <button onclick="onResumePauseButtonPress()" id="resumePauseButton">Start</button>
-            <button onclick="skip()">Skip</button>
             <h2 id="exerciseName"></h2>
             <h1 id="exerciseSeconds"></h1>
         </div>
@@ -732,6 +730,7 @@
         var totalSecondCounter = 0;
         var totMinutes = 0;
         var atHome = true;
+        var isRunning = false;
         var shuffle = function (array) {
             var currentIndex = array.length;
             var temporaryValue, randomIndex;
@@ -818,9 +817,11 @@
             document.getElementById('exerciseName').innerHTML = 'Off';
             document.getElementById('exerciseSeconds').innerHTML = '...';
         }
-        function beginNextStep() {
-            currentStep += 1;
+        function shiftToNeighborExercise(direction) {
+            currentStep += direction;
+            if (currentStep < 0) currentStep = 0;
             if (currentStep >= fullExer.length) {
+                currentStep = fullExer.length;
                 stop();
                 return;
             }
@@ -833,7 +834,7 @@
             totalSecondCounter -= 1;
             currentSecond += 1;
             if (currentSecond >= fullExer[currentStep].seconds) {
-                beginNextStep();
+                shiftToNeighborExercise(1);
             }
             if (currentSecond < 0) {
                 displayNameTime();
@@ -845,13 +846,12 @@
             }
         }
         function onResumePauseButtonPress() {
-            var btn = document.getElementById('resumePauseButton');
-            if (btn.innerHTML === 'Start' || btn.innerHTML === 'Resume') {
-                btn.innerHTML = 'Pause';
+            if (isRunning === false) {
+                isRunning = true;
                 start();
             }
-            else if (btn.innerHTML === 'Pause') {
-                btn.innerHTML = 'Resume';
+            else {
+                isRunning = false;
                 pause();
             }
         }
@@ -875,8 +875,8 @@
             currentSecond = restTime * -1;
             setColor('grey');
         }
-        function skip() {
-            beginNextStep();
+        function skip(direction) {
+            shiftToNeighborExercise(direction);
             calculateTimeRemaining();
             displayNameTime();
         }
@@ -893,8 +893,10 @@
                 event.preventDefault();
             }
             else if(event.keyCode === 39) { // arrow right
-                skip();
+                skip(1);
                 event.preventDefault();
+            } else if(event.keyCode === 37) {
+                skip(-1);
             }
         }, false);
         document.getElementById('randomCheckbox').addEventListener('click', (event) => {
