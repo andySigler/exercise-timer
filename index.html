@@ -27,6 +27,9 @@
         <div class="container">
             <select id="exerciseSelect">
                 <option value="simple">Warm-Up</option>
+                <option value="stretch">Stretch</option>
+                <option value="core">Core</option>
+                <option value="back">Back</option>
                 <option value="random">Random Excercise</option>
             </select>
             <span id="description"></span>
@@ -38,235 +41,247 @@
     </body>
     <script type="text/javascript">
 
+        var _ex_simple = [
+            {
+                "name": "Lacrosse Ball",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Bar Hang",
+                "seconds": 60,
+                "sets": 3,
+                "extraWait": 10,
+                "home": false
+            },
+            {
+                "name": "Scapular Wall Hold",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Should Motions",
+                "seconds": 30,
+                "sets": 4,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Corner Stretch",
+                "seconds": 30,
+                "sets": 2,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Wall Lats Stretch",
+                "seconds": 30,
+                "sets": 2,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Rope Pulls",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Hamstring Stretch",
+                "seconds": 20,
+                "sets": 6,
+                "extraWait": 0,
+                "home": false
+            }
+        ];
+
+        var _ex_stretch = [
+            {
+                "name": "T-Spine Rotation",
+                "seconds": 180,
+                "sets": 2,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Cat Camel",
+                "seconds": 180,
+                "sets": 1,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Cobra",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "90:90 Hips",
+                "seconds": 30,
+                "sets": 6,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Standing Bird Dog",
+                "seconds": 60,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Lunge Hip Flex",
+                "seconds": 30,
+                "sets": 6,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Elbow Lunge",
+                "seconds": 30,
+                "sets": 6,
+                "extraWait": 0,
+                "home": false
+            }
+        ];
+
+        var _ex_core = [
+            {
+                "name": "Raise Knee Hip",
+                "seconds": 30,
+                "sets": 6,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Straight Leg Raise",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Hip Bridge",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Bicycles",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Plank",
+                "seconds": 60,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Dead Bug",
+                "seconds": 60,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "V Sit",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Ball Crunches",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            }
+        ];
+
+        var _ex_back = [
+            {
+                "name": "WTYL",
+                "seconds": 30,
+                "sets": 12,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Scapular Push-Up",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Walking Superman",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Standing Band Pull",
+                "seconds": 30,
+                "sets": 6,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Standing Band Twist",
+                "seconds": 30,
+                "sets": 6,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Pull Ups",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Thread Needle",
+                "seconds": 30,
+                "sets": 6,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Bird Dog",
+                "seconds": 60,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Push-Up Rotate",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 0,
+                "home": false
+            }
+        ];
+
         var exercises = {
-            'simple': [
-                {
-                    "name": "Lacrosse Ball",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Bar Hang",
-                    "seconds": 60,
-                    "sets": 3,
-                    "extraWait": 10,
-                    "home": false
-                },
-                {
-                    "name": "Scapular Wall Hold",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Should Motions",
-                    "seconds": 30,
-                    "sets": 4,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Corner Stretch",
-                    "seconds": 30,
-                    "sets": 2,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Wall Lats Stretch",
-                    "seconds": 30,
-                    "sets": 2,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Rope Pulls",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Hamstring Stretch",
-                    "seconds": 10,
-                    "sets": 6,
-                    "extraWait": 0,
-                    "home": false
-                }
-            ],
-            'random': [
-                {
-                    "name": "T-Spine Rotation",
-                    "seconds": 180,
-                    "sets": 2,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Cat Camel",
-                    "seconds": 180,
-                    "sets": 1,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "WTYL",
-                    "seconds": 30,
-                    "sets": 12,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Cobra",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Scapular Push-Up",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Walking Superman",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Standing Band Pull",
-                    "seconds": 30,
-                    "sets": 6,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Standing Band Twist",
-                    "seconds": 30,
-                    "sets": 6,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Pull Ups",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Thread Needle",
-                    "seconds": 30,
-                    "sets": 6,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Bird Dog",
-                    "seconds": 60,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Push-Up Rotate",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "90:90 Hips",
-                    "seconds": 30,
-                    "sets": 6,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Standing Bird Dog",
-                    "seconds": 60,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Lunge Hip Flex",
-                    "seconds": 30,
-                    "sets": 6,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Elbow Lunge",
-                    "seconds": 30,
-                    "sets": 6,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Raise Knee Hip",
-                    "seconds": 30,
-                    "sets": 6,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Straight Leg Raise",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Hip Bridge",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Bicycles",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Plank",
-                    "seconds": 60,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Dead Bug",
-                    "seconds": 60,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "V Sit",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                },
-                {
-                    "name": "Ball Crunches",
-                    "seconds": 30,
-                    "sets": 3,
-                    "extraWait": 0,
-                    "home": false
-                }
-            ]
+            'simple': _ex_simple,
+            'stretch': _ex_stretch,
+            'core': _ex_core,
+            'back': _ex_back
         };
         var fullExer = [];
         var interval = undefined;
@@ -330,14 +345,24 @@
                 ]
             }
             */
-            fullExer = exercises[name].slice();
+            fullExer = [];
+            if (name == 'random') {
+                // all exercises included in random
+                fullExer = fullExer.concat(exercises['core']);
+                fullExer = fullExer.concat(exercises['back']);
+                fullExer = fullExer.concat(exercises['stretch']);
+                fullExer = shuffle(fullExer);
+            } else {
+                fullExer = exercises[name];
+            }
+            // prepend with warmp up
+            if (name != 'simple') {
+                fullExer = exercises['simple'].concat(fullExer);
+            }
+            fullExer = expandSets(fullExer);
             if (atHome == false) {
                 fullExer = removeHome(fullExer);
             }
-            if (name == 'random') {
-                fullExer = shuffle(fullExer);
-            }
-            fullExer = expandSets(fullExer);
             calculateTimeRemaining();
             displayNameTime();
         }
@@ -477,7 +502,6 @@
         var setFromUi = function(e) {
             atHome = document.getElementById('homeCheckbox').checked;
             exSel = document.getElementById('exerciseSelect').value;
-            console.log(atHome, exSel)
             preloadExercise(exSel, atHome);
         }
 
