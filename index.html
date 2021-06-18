@@ -29,8 +29,6 @@
                 <option value="warm_up">Warm-Up</option>
                 <option value="full_body">Full-Body</option>
                 <option value="back">Back</option>
-                <option value="yoga">Yoga</option>
-                <option value="random">Random Excercise</option>
             </select>
             <span id="description"></span>
             <br>
@@ -43,7 +41,7 @@
 
         var _ex_warm_up = [
             {
-                "name": "Corner Stretch",
+                "name": "Chest Stretch",
                 "seconds": 30,
                 "sets": 2,
                 "extraWait": 0,
@@ -58,7 +56,7 @@
             },
             {
                 "name": "Lying Thumb-to-Floor",
-                "seconds": 240,
+                "seconds": 180,
                 "sets": 1,
                 "extraWait": 0,
                 "home": false
@@ -71,29 +69,29 @@
                 "home": false
             },
             {
+                "name": "Weights Scap-Press",
+                "seconds": 60,
+                "sets": 2,
+                "extraWait": 0,
+                "home": true
+            },
+            {
                 "name": "Hamstring Stretch",
                 "seconds": 30,
-                "sets": 4,
+                "sets": 2,
                 "extraWait": 0,
                 "home": false
             },
             {
-                "name": "Superman",
-                "seconds": 30,
-                "sets": 3,
-                "extraWait": 10,
-                "home": false
-            },
-            {
-                "name": "Cat Camel",
+                "name": "Scapula Press",
                 "seconds": 120,
                 "sets": 1,
                 "extraWait": 0,
                 "home": false
             },
             {
-                "name": "Scapula Press",
-                "seconds": 180,
+                "name": "Cat Camel",
+                "seconds": 120,
                 "sets": 1,
                 "extraWait": 0,
                 "home": false
@@ -107,17 +105,45 @@
             },
             {
                 "name": "Wall Foam-Roll",
-                "seconds": 180,
+                "seconds": 90,
                 "sets": 1,
                 "extraWait": 0,
-                "home": false
+                "home": true
+            },
+            {
+                "name": "Elbow Rotate-In",
+                "seconds": 60,
+                "sets": 1,
+                "extraWait": 0,
+                "home": true
+            },
+            {
+                "name": "Elbow Rotate-Out",
+                "seconds": 60,
+                "sets": 1,
+                "extraWait": 0,
+                "home": true
+            },
+            {
+                "name": "Rope Row",
+                "seconds": 30,
+                "sets": 3,
+                "extraWait": 10,
+                "home": true
+            },
+            {
+                "name": "Band Pull-Down",
+                "seconds": 90,
+                "sets": 1,
+                "extraWait": 10,
+                "home": true
             }
         ];
 
         var _ex_full_body = [
             {
-                "name": "Standing Bird Dog",
-                "seconds": 120,
+                "name": "Plank",
+                "seconds": 60,
                 "sets": 1,
                 "extraWait": 0,
                 "home": false
@@ -131,20 +157,6 @@
             },
             {
                 "name": "Crunches",
-                "seconds": 60,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Push-Up Rotate",
-                "seconds": 45,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Plank",
                 "seconds": 60,
                 "sets": 1,
                 "extraWait": 0,
@@ -211,39 +223,18 @@
 
         var _ex_back = [
             {
-                "name": "Rope Row",
-                "seconds": 45,
-                "sets": 1,
-                "extraWait": 10,
-                "home": true
-            },
-            {
-                "name": "Standing Band Twist",
-                "seconds": 45,
-                "sets": 2,
+                "name": "Superman",
+                "seconds": 30,
+                "sets": 3,
                 "extraWait": 10,
                 "home": false
-            },
-            {
-                "name": "Rope Row",
-                "seconds": 45,
-                "sets": 1,
-                "extraWait": 0,
-                "home": true
             },
             {
                 "name": "Elbow Rotate",
-                "seconds": 45,
+                "seconds": 90,
                 "sets": 2,
                 "extraWait": 0,
                 "home": false
-            },
-            {
-                "name": "Band Pull-Down",
-                "seconds": 90,
-                "sets": 1,
-                "extraWait": 0,
-                "home": true
             },
             {
                 "name": "Standing Band Raise",
@@ -268,254 +259,6 @@
             }
         ];
 
-        var _ex_yoga = [
-            {
-                "name": "Stand Breath",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Hamstring Right",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Hamstring Left",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Plank",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Downward Dog",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Hip-Flex Ceil R",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Hip-Flex Ceil L",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Plank",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Downward Dog",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Warrior R",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Warrior L",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Plank",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Downward Dog",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Warrior Arm Twist R",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Warrior Arm Twist L",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Plank",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Downward Dog",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Warrior Elbow Twist R",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Warrior Elbow Twist L",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Plank",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Downward Dog",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Spread-Leg Twist R",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Spread-Leg Twist L",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Lunge Twist R",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Lunge Twist L",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Plank",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Downward Dog",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "V Abs",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Groin Stretch",
-                "seconds": 60,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Sit Twist R",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Sit Twist L",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Lye Knees Chest",
-                "seconds": 30,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Hip Bridge",
-                "seconds": 60,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Lye Hip Twist R",
-                "seconds": 60,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Lye Hip Twist L",
-                "seconds": 60,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-        ];
-
         var exercises = {
             'warm_up': {
                 'steps': _ex_warm_up,
@@ -528,20 +271,16 @@
             'back': {
                 'steps': _ex_back,
                 'warm_up': true
-            },
-            'yoga': {
-                'steps': _ex_yoga,
-                'warm_up': false
             }
         };
         var schedule = [
             'back',           // Sunday
             'full_body',      // Monday
             'back',           // Tuesday
-            'yoga',           // Wednesday
+            'full_body',      // Wednesday
             'back',           // Thursday
             'full_body',      // Friday
-            'yoga',           // Saturday
+            'back',           // Saturday
         ];
         var fullExer = [];
         var interval = undefined;
@@ -553,19 +292,6 @@
         var totMinutes = 0;
 
         var isRunning = false;
-
-        var shuffle = function (array) {
-            var currentIndex = array.length;
-            var temporaryValue, randomIndex;
-            while (0 !== currentIndex) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex -= 1;
-                temporaryValue = array[currentIndex];
-                array[currentIndex] = array[randomIndex];
-                array[randomIndex] = temporaryValue;
-            }
-            return array;
-        };
 
         var removeHome = function (exerciseArray) {
             var newExer = [];
@@ -606,14 +332,7 @@
             }
             */
             fullExer = [];
-            if (name == 'random') {
-                // all exercises included in random
-                fullExer = fullExer.concat(exercises['full_body']['steps']);
-                fullExer = fullExer.concat(exercises['back']['steps']);
-                fullExer = shuffle(fullExer);
-            } else {
-                fullExer = exercises[name]['steps'];
-            }
+            fullExer = exercises[name]['steps'];
             // prepend with warmp up
             if (exercises[name] && exercises[name]['warm_up']) {
                 fullExer = exercises['warm_up']['steps'].concat(fullExer);
