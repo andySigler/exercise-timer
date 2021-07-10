@@ -27,6 +27,7 @@
         <div class="container">
             <select id="exerciseSelect">
                 <option value="warm_up">Warm-Up</option>
+                <option value="cool_down">Cool-Down</option>
                 <option value="full_body">Full-Body</option>
                 <option value="back">Back</option>
             </select>
@@ -46,34 +47,6 @@
                 "sets": 1,
                 "extraWait": 0,
                 "home": true
-            },
-            {
-                "name": "Chest Stretch",
-                "seconds": 30,
-                "sets": 2,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Wall Lats Stretch",
-                "seconds": 30,
-                "sets": 2,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "T-Spine Rotation",
-                "seconds": 150,
-                "sets": 2,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Hamstring Stretch",
-                "seconds": 45,
-                "sets": 2,
-                "extraWait": 0,
-                "home": false
             },
             {
                 "name": "Lying Scap-Press",
@@ -111,20 +84,58 @@
                 "home": true
             },
             {
-                "name": "Band Rows",
+                "name": "Rows",
                 "seconds": 90,
                 "sets": 1,
                 "extraWait": 10,
                 "home": true
             },
             {
-                "name": "Scapula Press",
+                "name": "Scap Press",
                 "seconds": 120,
                 "sets": 1,
                 "extraWait": 0,
                 "home": false
             }
         ];
+
+        var _ex_cool_down = [
+            {
+                "name": "Chest Stretch",
+                "seconds": 30,
+                "sets": 2,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Wall Lats Stretch",
+                "seconds": 30,
+                "sets": 2,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Cat-Camel",
+                "seconds": 150,
+                "sets": 1,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "T-Spine Rotation",
+                "seconds": 150,
+                "sets": 2,
+                "extraWait": 0,
+                "home": false
+            },
+            {
+                "name": "Hamstring Stretch",
+                "seconds": 45,
+                "sets": 2,
+                "extraWait": 0,
+                "home": false
+            }
+        ]
 
         var _ex_full_body = [
             {
@@ -171,7 +182,7 @@
             },
             {
                 "name": "Bicycles",
-                "seconds": 45,
+                "seconds": 30,
                 "sets": 1,
                 "extraWait": 0,
                 "home": false
@@ -209,13 +220,6 @@
 
         var _ex_back = [
             {
-                "name": "Lying Elbow Rotate",
-                "seconds": 90,
-                "sets": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
                 "name": "Bird Dog",
                 "seconds": 180,
                 "sets": 1,
@@ -237,20 +241,6 @@
                 "home": false
             },
             {
-                "name": "Standing Band Raise",
-                "seconds": 20,
-                "sets": 1,
-                "extraWait": 10,
-                "home": true
-            },
-            {
-                "name": "Standing Band Raise",
-                "seconds": 20,
-                "sets": 3,
-                "extraWait": -10,
-                "home": true
-            },
-            {
                 "name": "WTYL",
                 "seconds": 45,
                 "sets": 4,
@@ -262,15 +252,23 @@
         var exercises = {
             'warm_up': {
                 'steps': _ex_warm_up,
-                'warm_up': false
+                'warm_up': false,
+                'cool_down': true
+            },
+            'cool_down': {
+                'steps': _ex_cool_down,
+                'warm_up': false,
+                'cool_down': false
             },
             'full_body': {
                 'steps': _ex_full_body,
-                'warm_up': true
+                'warm_up': true,
+                'cool_down': true
             },
             'back': {
                 'steps': _ex_back,
-                'warm_up': true
+                'warm_up': true,
+                'cool_down': true
             }
         };
         var schedule = [
@@ -336,6 +334,9 @@
             // prepend with warmp up
             if (exercises[name] && exercises[name]['warm_up']) {
                 fullExer = exercises['warm_up']['steps'].concat(fullExer);
+            }
+            if (exercises[name] && exercises[name]['cool_down']) {
+                fullExer = fullExer.concat(exercises['cool_down']['steps']);
             }
             fullExer = expandSets(fullExer);
             if (atHome == false) {
