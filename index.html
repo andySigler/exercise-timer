@@ -27,10 +27,8 @@
         <div class="container">
             <select id="exerciseSelect">
                 <option value="warm_up">Warm-Up</option>
-                <option value="cool_down">Cool-Down</option>
-                <option value="stretch">Stretch</option>
-                <option value="back_a">Back-A</option>
-                <option value="back_b">Back-B</option>
+                <option value="back_floor">Back-Floor</option>
+                <option value="back_bands">Back-Bands</option>
             </select>
             <button onclick="skip(1)">Next</button>
             <br>
@@ -44,34 +42,18 @@
         var _ex_warm_up = [
             {
                 "name": "Snow-Angel",
-                "seconds": 120,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
                 "home": false
             },
             {
                 "name": "Sit Foam Roll",
-                "seconds": 150,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
                 "home": true
             },
             {
                 "name": "Scap-Press Lite",
-                "seconds": 180,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
                 "home": false
             },
             {
                 "name": "Cat-Camel",
-                "seconds": 150,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
                 "home": false
             },
         ];
@@ -79,196 +61,65 @@
         var _ex_cool_down = [
             {
                 "name": "Chest Stretch",
-                "seconds": 30,
-                "sets": 3,
-                "reps": 1,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Hamstring Extension",
-                "seconds": 120,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            }
-        ]
-
-        var _ex_stretch = [
-            {
-                "name": "Wall Chin-Tuck",
-                "seconds": 30,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Lunge Hip Flex",
-                "seconds": 30,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "90:90 Hips",
-                "seconds": 60,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Calf Stretch",
-                "seconds": 30,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
                 "home": false
             },
             {
                 "name": "Hamstring Stretch",
-                "seconds": 45,
-                "sets": 3,
-                "reps": 1,
-                "extraWait": 0,
+                "home": false
+            }
+        ]
+
+        var _ex_back_floor = [
+            {
+                "name": "Prone Trunk Lift",         //
                 "home": false
             },
             {
-                "name": "Wall Lats Stretch",
-                "seconds": 30,
-                "sets": 3,
-                "reps": 1,
-                "extraWait": 0,
+                "name": "Scap Plank",               //
+                "home": false
+            },
+            {
+                "name": "Bird Dog",                 //
+                "home": false
+            },
+            {
+                "name": "Scap Press Heavy",         //
+                "home": false
+            },
+            {
+                "name": "Superman",                 //
+                "home": false
+            },
+            {
+                "name": "Downward Dog",             //
                 "home": false
             }
         ];
 
-        var _ex_back_a = [
+        var _ex_back_bands = [
             {
-                "name": "Scap Slide", // A-B
-                "seconds": 120,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Wall Clocks", // A
-                "seconds": 90,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Rows", // A-B
-                "seconds": 90,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 10,
-                "home": true
-            },
-            {
-                "name": "Bird Dog", // B
-                "seconds": 180,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Scap Press Heavy", // A
-                "seconds": 120,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "WTYL", // A
-                "seconds": 45,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Superman", // A
-                "seconds": 45,
-                "sets": 3,
-                "reps": 1,
-                "extraWait": 0,
-                "home": false
-            }
-        ];
-
-        var _ex_back_b = [
-            {
-                "name": "Prone Trunk Lift", // B
-                "seconds": 120,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Prone Hip Extension",
-                "seconds": 30,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
+                "name": "Scap Slide",
                 "home": false
             },
             {
                 "name": "Band Wings",
-                "seconds": 90,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 10,
                 "home": true
             },
             {
-                "name": "Scap Plank", // B
-                "seconds": 30,
-                "sets": 3,
-                "reps": 30,
-                "extraWait": 0,
-                "home": false
-            },
-            {
-                "name": "Band Rotate-A", // B
-                "seconds": 90,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
+                "name": "Wall Clocks",
                 "home": true
             },
             {
-                "name": "Band Rotate-B", // B
-                "seconds": 90,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
+                "name": "Rows",
                 "home": true
             },
             {
-                "name": "Band Pull-Down", // B
-                "seconds": 90,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 10,
+                "name": "Band Rotate A/B",
                 "home": true
             },
             {
-                "name": "Downward Dog", // B
-                "seconds": 45,
-                "sets": 3,
-                "reps": 10,
-                "extraWait": 0,
-                "home": false
+                "name": "Band Pull-Down",
+                "home": true
             }
         ];
 
@@ -283,31 +134,17 @@
                 'warm_up': false,
                 'cool_down': false
             },
-            'stretch': {
-                'steps': _ex_stretch,
+            'back_floor': {
+                'steps': _ex_back_floor,
                 'warm_up': true,
                 'cool_down': true
             },
-            'back_a': {
-                'steps': _ex_back_a,
-                'warm_up': true,
-                'cool_down': true
-            },
-            'back_b': {
-                'steps': _ex_back_b,
+            'back_bands': {
+                'steps': _ex_back_bands,
                 'warm_up': true,
                 'cool_down': true
             }
         };
-        var schedule = [
-            'stretch',           // Sunday
-            'back_a',        // Monday
-            'stretch',           // Tuesday
-            'back_b',        // Wednesday
-            'stretch',           // Thursday
-            'warm_up',        // Friday
-            'back_b',           // Saturday
-        ];
         var fullExer = [];
         var interval = undefined;
 
@@ -318,6 +155,9 @@
         var totMinutes = 0;
 
         var isRunning = false;
+
+        var counterInterval = undefined;
+        var counterSeconds = 0;
 
         var removeHome = function (exerciseArray) {
             var newExer = [];
@@ -371,24 +211,16 @@
             if (atHome == false) {
                 fullExer = removeHome(fullExer);
             }
-            // calculateTimeRemaining();
+            counterSeconds = 0;
+            if (counterInterval) {
+                clearInterval(counterInterval);
+                counterInterval = undefined;
+            }
+            counterInterval = setInterval(function(){
+                counterSeconds += 1;
+                setDisplayTime(counterSeconds);
+            }, 1000);
             displayInfo();
-        }
-
-        function calculateTimeRemaining() {
-            var totalSteps = 0;
-            totMinutes = fullExer.reduce((tot, val, i) => {
-                if (currentStep <= i) {
-                    totalSteps += 1;
-                    tot += (val.seconds / 60);
-                    if (val.extraWait) {
-                        tot += (val.extraWait / 60)
-                    }
-                }
-                return tot
-            }, 0);
-            totMinutes += (restTime * totalSteps) / 60;
-            totalSecondCounter = Math.round(totMinutes * 60);
         }
 
         function getTimeRemainingString() {
@@ -404,18 +236,8 @@
         function displayInfo() {
             var exName = fullExer[currentStep].name;
             exName += '<br>' + String(currentStep + 1) + ' / ' + String(fullExer.length);
-            // exName += '<br>' + getTimeRemainingString();
             document.getElementById('exerciseName').innerHTML = exName;
-            
-            // var exDetails = Math.floor(currentSecond);
-            // if (exDetails >= 0) {
-            //     exDetails = fullExer[currentStep].seconds - exDetails;
-            // }
-            // exDetails = String(Math.abs(exDetails));
-            var exDetails = String(fullExer[currentStep]['sets']);
-            exDetails += ' x ';
-            exDetails += String(fullExer[currentStep]['reps']);
-            document.getElementById('exerciseDetails').innerHTML = exDetails;
+            setDisplayTime(counterSeconds)
         }
 
         function setColor(color) {
@@ -424,7 +246,23 @@
 
         function clearNameTime() {
             document.getElementById('exerciseName').innerHTML = 'Off';
-            document.getElementById('exerciseDetails').innerHTML = '...';
+            setDisplayTime(0);
+        }
+
+        function setDisplayTime(seconds) {
+            var min = Math.floor(seconds / 60);
+            if (min < 10) {
+                min = '0' + min;
+            } else {
+                min += '';
+            }
+            var secs = seconds % 60;
+             if (secs < 10) {
+                secs = '0' + secs;
+            } else {
+                secs += '';
+            }
+            document.getElementById('exerciseDetails').innerHTML = min + ':' + secs;
         }
 
         function shiftToNeighborExercise(direction) {
@@ -523,9 +361,8 @@
 
         window.addEventListener('load', (event) => {
             stop();
-            name = schedule[new Date().getDay()];
-            document.getElementById('exerciseSelect').value = name;
-            preloadExercise(name);
+            console.log(document.getElementById('exerciseSelect').value)
+            preloadExercise(document.getElementById('exerciseSelect').value);
         });
 
     </script>
