@@ -33,6 +33,7 @@
             <button onclick="skip(1)">Next</button>
             <br>
             <input type="checkbox" id="homeCheckbox" checked> Home
+            <p><strong><span id="exerciseMinutes">0</span></strong> minutes</p>
             <h2 id="exerciseName"></h2>
             <h1 id="exerciseDetails"></h1>
         </div>
@@ -41,93 +42,108 @@
 
         var _ex_warm_up = [
             {
-                "name": "Snow-Angel",
-                "home": false
+                "name": "Floor Roller",
+                "home": true,
+                "seconds": (10 + 15) * 30  // (books + wings) * sets = 15 minutes
             },
             {
-                "name": "Sit Foam Roll",
-                "home": true
+                "name": "Wall Arms",
+                "home": false,
+                "seconds": 15 * 30
             },
             {
-                "name": "Scap-Press Lite",
-                "home": false
+                "name": "Chin Tuck",
+                "home": false,
+                "seconds": 7 * 30
             },
             {
-                "name": "Cat-Camel",
-                "home": false
-            },
+                "name": "Stand Raise",
+                "home": false,
+                "seconds": 5 * 60
+            }
         ];
 
         var _ex_cool_down = [
             {
-                "name": "Chest Stretch",
-                "home": false
+                "name": "Chair Roller",
+                "home": false,
+                "seconds": 10 * 30
             },
             {
-                "name": "Wall Lats Stretch",
-                "home": false
+                "name": "Hamstring 1/2",
+                "home": false,
+                "seconds": 15 * 3
             },
             {
-                "name": "Chin Tuck",
-                "home": false
-            },
-            {
-                "name": "Hamstring Stretch",
-                "home": false
+                "name": "Hamstring 2/2",
+                "home": false,
+                "seconds": 15 * 3
             }
         ]
 
         var _ex_back_floor = [
             {
                 "name": "Open Books",               //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Scap Plank",               //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Bird Dog",                 //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Scap Press Heavy",         //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Superman",                 //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Downward Dog",             //
-                "home": false
+                "home": false,
+                "seconds": 5
             }
         ];
 
         var _ex_back_bands = [
             {
                 "name": "Scap Slide",
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Band Wings",
-                "home": true
+                "home": true,
+                "seconds": 5
             },
             {
                 "name": "Wall Clocks",
-                "home": true
+                "home": true,
+                "seconds": 5
             },
             {
                 "name": "Rows",
-                "home": true
+                "home": true,
+                "seconds": 5
             },
             {
                 "name": "Band Rotate A/B",
-                "home": true
+                "home": true,
+                "seconds": 5
             },
             {
                 "name": "Band Pull-Down",
-                "home": true
+                "home": true,
+                "seconds": 5
             }
         ];
 
@@ -191,6 +207,20 @@
             return newExer.slice();
         }
 
+        var getExerciseSeconds = function (exerciseArray) {
+            var totalSeconds = 0;
+            exerciseArray.map((ex) => {
+                totalSeconds += restTime;
+                if (ex.extraWait) {
+                    totalSeconds += ex.extraWait;
+                }
+                if (ex.seconds) {
+                    totalSeconds += ex.seconds;
+                }
+            });
+            return totalSeconds;
+        }
+
         function preloadExercise(name, atHome) {
             /*
             {
@@ -208,17 +238,18 @@
             */
             fullExer = [];
             fullExer = exercises[name]['steps'];
-            // prepend with warmp up
-            if (exercises[name] && exercises[name]['warm_up']) {
+            if (exercises[name]['warm_up']) {
                 fullExer = exercises['warm_up']['steps'].concat(fullExer);
             }
-            if (exercises[name] && exercises[name]['cool_down']) {
+            if (exercises[name]['cool_down']) {
                 fullExer = fullExer.concat(exercises['cool_down']['steps']);
             }
             // fullExer = expandSets(fullExer);
             if (atHome == false) {
                 fullExer = removeHome(fullExer);
             }
+            var durationEstimate = Math.round(getExerciseSeconds(fullExer) / 60);
+            document.getElementById("exerciseMinutes").innerHTML = durationEstimate
             counterSeconds = 0;
             if (counterInterval) {
                 clearInterval(counterInterval);
@@ -345,8 +376,8 @@
 
         document.addEventListener('keydown', (event) => {
             if(event.keyCode === 32) { // space
-                // onResumePauseButtonPress();
-                skip(1);
+                onResumePauseButtonPress();
+                // skip(1);
                 event.preventDefault();
             }
             else if(event.keyCode === 39) { // arrow right
