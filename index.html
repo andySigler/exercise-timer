@@ -7,12 +7,16 @@
             }
             h1 {
                 font-size: 200px;
+            }
+            h2 {
+                font-size: 40px;
+            }
+            h3 {
+                font-size: 30px;
+            }
+            h1, h2, h3 {
                 width:100%;
                 margin-top:0px;
-            }
-            h2, h3, h4 {
-                font-size: 40px;
-                width:100%;
             }
             .container {
                 width: 100%;
@@ -35,7 +39,8 @@
             <input type="checkbox" id="homeCheckbox" checked> Home
             <p><strong><span id="exerciseMinutes">0</span></strong> minutes</p>
             <h2 id="exerciseName"></h2>
-            <h1 id="exerciseDetails"></h1>
+            <h3 id="cumulativeTime"></h3>
+            <h1 id="currentStepTime"></h1>
         </div>
     </body>
     <script type="text/javascript">
@@ -257,7 +262,7 @@
             }
             counterInterval = setInterval(function(){
                 counterSeconds += 1;
-                setDisplayTime(counterSeconds);
+                setDisplayTime();
             }, 1000);
             displayInfo();
         }
@@ -276,7 +281,7 @@
             var exName = fullExer[currentStep].name;
             exName += '<br>' + String(currentStep + 1) + ' / ' + String(fullExer.length);
             document.getElementById('exerciseName').innerHTML = exName;
-            setDisplayTime(counterSeconds)
+            setDisplayTime()
         }
 
         function setColor(color) {
@@ -285,23 +290,41 @@
 
         function clearNameTime() {
             document.getElementById('exerciseName').innerHTML = 'Off';
-            setDisplayTime(0);
+            counterSeconds = 0;
+            setDisplayTime();
         }
 
-        function setDisplayTime(seconds) {
-            var min = Math.floor(seconds / 60);
+        function _sec_to_string(_sec) {
+            var min = Math.floor(Math.abs(_sec) / 60);
             if (min < 10) {
                 min = '0' + min;
             } else {
                 min += '';
             }
-            var secs = seconds % 60;
+            var secs = Math.abs(_sec) % 60;
              if (secs < 10) {
                 secs = '0' + secs;
             } else {
                 secs += '';
             }
-            document.getElementById('exerciseDetails').innerHTML = min + ':' + secs;
+            if (_sec < 0) {
+                return "-" + min + ':' + secs
+            } else {
+                return min + ':' + secs
+            }
+        }
+
+        function setDisplayTime() {
+            var cumulativeTimeStr = _sec_to_string(counterSeconds);
+            if (currentSecond < 0) {
+                currentStepTime = _sec_to_string(currentSecond);
+            } else if (fullExer[currentStep]) {
+                currentStepTime = _sec_to_string(fullExer[currentStep].seconds - currentSecond)
+            } else {
+                currentStepTime = _sec_to_string(0)
+            }
+            document.getElementById('cumulativeTime').innerHTML = cumulativeTimeStr;
+            document.getElementById('currentStepTime').innerHTML = currentStepTime;
         }
 
         function shiftToNeighborExercise(direction) {
