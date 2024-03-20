@@ -7,12 +7,16 @@
             }
             h1 {
                 font-size: 200px;
+            }
+            h2 {
+                font-size: 40px;
+            }
+            h3 {
+                font-size: 30px;
+            }
+            h1, h2, h3 {
                 width:100%;
                 margin-top:0px;
-            }
-            h2, h3, h4 {
-                font-size: 40px;
-                width:100%;
             }
             .container {
                 width: 100%;
@@ -33,101 +37,118 @@
             <button onclick="skip(1)">Next</button>
             <br>
             <input type="checkbox" id="homeCheckbox" checked> Home
+            <p><strong><span id="exerciseMinutes">0</span></strong> minutes</p>
             <h2 id="exerciseName"></h2>
-            <h1 id="exerciseDetails"></h1>
+            <h3 id="cumulativeTime"></h3>
+            <h1 id="currentStepTime"></h1>
         </div>
     </body>
     <script type="text/javascript">
 
         var _ex_warm_up = [
             {
-                "name": "Snow-Angel",
-                "home": false
+                "name": "Floor Roller",
+                "home": true,
+                "seconds": (10 + 15) * 30  // (books + wings) * sets = 15 minutes
             },
             {
-                "name": "Sit Foam Roll",
-                "home": true
+                "name": "Wall Arms",
+                "home": false,
+                "seconds": 15 * 30
             },
             {
-                "name": "Scap-Press Lite",
-                "home": false
+                "name": "Chin Tuck",
+                "home": false,
+                "seconds": 7 * 30
             },
             {
-                "name": "Cat-Camel",
-                "home": false
-            },
+                "name": "Stand Raise",
+                "home": false,
+                "seconds": 5 * 60
+            }
         ];
 
         var _ex_cool_down = [
             {
-                "name": "Chest Stretch",
-                "home": false
+                "name": "Chair Roller",
+                "home": false,
+                "seconds": 10 * 30
             },
             {
-                "name": "Wall Lats Stretch",
-                "home": false
+                "name": "Hamstring 1/2",
+                "home": false,
+                "seconds": 15 * 3
             },
             {
-                "name": "Chin Tuck",
-                "home": false
-            },
-            {
-                "name": "Hamstring Stretch",
-                "home": false
+                "name": "Hamstring 2/2",
+                "home": false,
+                "seconds": 15 * 3
             }
         ]
 
         var _ex_back_floor = [
             {
                 "name": "Open Books",               //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Scap Plank",               //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Bird Dog",                 //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Scap Press Heavy",         //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Superman",                 //
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Downward Dog",             //
-                "home": false
+                "home": false,
+                "seconds": 5
             }
         ];
 
         var _ex_back_bands = [
             {
                 "name": "Scap Slide",
-                "home": false
+                "home": false,
+                "seconds": 5
             },
             {
                 "name": "Band Wings",
-                "home": true
+                "home": true,
+                "seconds": 5
             },
             {
                 "name": "Wall Clocks",
-                "home": true
+                "home": true,
+                "seconds": 5
             },
             {
                 "name": "Rows",
-                "home": true
+                "home": true,
+                "seconds": 5
             },
             {
                 "name": "Band Rotate A/B",
-                "home": true
+                "home": true,
+                "seconds": 5
             },
             {
                 "name": "Band Pull-Down",
-                "home": true
+                "home": true,
+                "seconds": 5
             }
         ];
 
@@ -191,6 +212,20 @@
             return newExer.slice();
         }
 
+        var getExerciseSeconds = function (exerciseArray) {
+            var totalSeconds = 0;
+            exerciseArray.map((ex) => {
+                totalSeconds += restTime;
+                if (ex.extraWait) {
+                    totalSeconds += ex.extraWait;
+                }
+                if (ex.seconds) {
+                    totalSeconds += ex.seconds;
+                }
+            });
+            return totalSeconds;
+        }
+
         function preloadExercise(name, atHome) {
             /*
             {
@@ -208,17 +243,18 @@
             */
             fullExer = [];
             fullExer = exercises[name]['steps'];
-            // prepend with warmp up
-            if (exercises[name] && exercises[name]['warm_up']) {
+            if (exercises[name]['warm_up']) {
                 fullExer = exercises['warm_up']['steps'].concat(fullExer);
             }
-            if (exercises[name] && exercises[name]['cool_down']) {
+            if (exercises[name]['cool_down']) {
                 fullExer = fullExer.concat(exercises['cool_down']['steps']);
             }
             // fullExer = expandSets(fullExer);
             if (atHome == false) {
                 fullExer = removeHome(fullExer);
             }
+            var durationEstimate = Math.round(getExerciseSeconds(fullExer) / 60);
+            document.getElementById("exerciseMinutes").innerHTML = durationEstimate
             counterSeconds = 0;
             if (counterInterval) {
                 clearInterval(counterInterval);
@@ -226,7 +262,7 @@
             }
             counterInterval = setInterval(function(){
                 counterSeconds += 1;
-                setDisplayTime(counterSeconds);
+                setDisplayTime();
             }, 1000);
             displayInfo();
         }
@@ -245,7 +281,7 @@
             var exName = fullExer[currentStep].name;
             exName += '<br>' + String(currentStep + 1) + ' / ' + String(fullExer.length);
             document.getElementById('exerciseName').innerHTML = exName;
-            setDisplayTime(counterSeconds)
+            setDisplayTime()
         }
 
         function setColor(color) {
@@ -254,23 +290,41 @@
 
         function clearNameTime() {
             document.getElementById('exerciseName').innerHTML = 'Off';
-            setDisplayTime(0);
+            counterSeconds = 0;
+            setDisplayTime();
         }
 
-        function setDisplayTime(seconds) {
-            var min = Math.floor(seconds / 60);
+        function _sec_to_string(_sec) {
+            var min = Math.floor(Math.abs(_sec) / 60);
             if (min < 10) {
                 min = '0' + min;
             } else {
                 min += '';
             }
-            var secs = seconds % 60;
+            var secs = Math.abs(_sec) % 60;
              if (secs < 10) {
                 secs = '0' + secs;
             } else {
                 secs += '';
             }
-            document.getElementById('exerciseDetails').innerHTML = min + ':' + secs;
+            if (_sec < 0) {
+                return "-" + min + ':' + secs
+            } else {
+                return min + ':' + secs
+            }
+        }
+
+        function setDisplayTime() {
+            var cumulativeTimeStr = _sec_to_string(counterSeconds);
+            if (currentSecond < 0) {
+                currentStepTime = _sec_to_string(currentSecond);
+            } else if (fullExer[currentStep]) {
+                currentStepTime = _sec_to_string(fullExer[currentStep].seconds - currentSecond)
+            } else {
+                currentStepTime = _sec_to_string(0)
+            }
+            document.getElementById('cumulativeTime').innerHTML = cumulativeTimeStr;
+            document.getElementById('currentStepTime').innerHTML = currentStepTime;
         }
 
         function shiftToNeighborExercise(direction) {
@@ -345,8 +399,8 @@
 
         document.addEventListener('keydown', (event) => {
             if(event.keyCode === 32) { // space
-                // onResumePauseButtonPress();
-                skip(1);
+                onResumePauseButtonPress();
+                // skip(1);
                 event.preventDefault();
             }
             else if(event.keyCode === 39) { // arrow right
